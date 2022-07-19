@@ -1,0 +1,150 @@
+{% extends 'accounts/basedashboard.html' %}
+{% block content %}
+{% load crispy_forms_tags %}
+
+            <div class="content-wrapper" style="min-height: 2836px;">
+                <!-- Content Header (Page header) -->
+                <section class="content-header">
+                  <div class="container-fluid">
+                    <div class="row mb-2">
+                      <div class="col-sm-6">
+                      
+                       <h4> Expenses Total : <b class=" btn btn-info badge badge-pill">R {{ total_expe }}</b></h4>
+                                           
+                      </div>
+                      <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                          <li class="breadcrumb-item"><a href="#">Expenses </a></li>
+                          <li class="breadcrumb-item active">List </li>
+                        
+                        </ol>
+                      </div>
+                    </div>
+                  </div><!-- /.container-fluid -->
+                </section>
+            
+                <!-- Main content -->
+                <section class="content">
+            
+                  <!-- Default box -->
+                  <div class="card">
+                    <div class="card-header">
+                      <h3 class="card-title">
+ 
+                      </h3>
+            <a class="btn btn-primary" href="{% url 'add_expense' %}"> <span class="fa fa-plus"></span>ADD NEW </a>
+           
+            <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                          <i class="fas fa-minus"></i>
+                        </button>
+                        <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
+                          <i class="fas fa-times"></i>
+                        </button>
+                      </div>
+                    </div>
+                    <div class="card-body">
+                      {% for x in messages %}
+                      <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong></strong> {{ x }}.
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                        {% endfor %}
+                        <form class="card" style="padding: 10px;" action="" method="GET">
+                            <div class="row">
+
+                                <div class="col-md-3">
+                                    {{ form.form.item_number }}
+                                </div>
+                                <div class="col-md-3">
+                                  {{ form.form.item_name }}
+                                </div>
+                                <div class="col-md-3">
+                                  {{ form.form.item_cost }}
+                                </div>
+                                <div class="col-md-1">
+                                    {{ form.form.requested_by }}
+                                </div>
+                                <div class="col-md-1">
+                                    {{ form.form.payment_method }}
+                                </div>
+                                
+                                <div class="col-md-1">
+                                    {{ form.form.permission_granted_by }}
+                                </div>
+                                <div class="col-md-1">
+                                    {{ form.form.paid_by }}
+                                </div>
+                                <div class="col-md-1">
+                                    {{ form.form.reason }}
+                                </div>
+                               
+                                <div class="col-md-1">
+                                    <br>
+                                  
+                                </div>
+                            </div>
+                        </form> 
+                    
+<table class="table table-sm table-striped table-hover table-responsive-lg " style="width: 100%; font-size: 12px;">
+    <tr>
+      <th><h5>Print</h5> <span class="fa fa-copy"></span></th>
+        <th><h5>Avatar</h5></th>
+        <th><h5>Item Number</h5></th>
+        <th><h5>Item Name</h5></th>
+        <th><h5>Item Cost</h5></th>
+        <th><h5>Requested By</h5></th>
+        <th><h5>Payment Method</h5></th>
+        <th><h5>Permission Granted By</h5></th>
+        <th><h5>Paid By</h5></th>
+        <th><h5>Reason</h5></th>
+        <th><h5>Date Requested</h5></th>
+      
+    </tr>
+    {% for x in school_expenses %}  
+    <tr>
+      <td><a href="#"> Print </a></td>
+        <td>
+            {% if x.avatar %}
+            <img class="shadow" style="width: 40px;border-radius: 100px;" src="{{ x.avatar.url }}" alt="">
+            {% else %}
+            <img class="shadow" style="width: 40px;border-radius: 100px;" src="/static/Logo.jpg" alt="">
+            {% endif %}
+        </td>
+        <td><h5>{{x.item_number}}</h5></td>
+        <td><h5>{{x.item_name}}</h5></td>
+        <td><h5>R {{x.item_cost}}</h5></td>
+        <td><h5>{{x.requested_by}}</h5></td>
+        <td><h5>{{ x.payment_method }}</h5></td>
+        <td><h5>{{x.permission_granted_by}}</h5></td>
+        <td><h5>{{x.paid_by}}</h5></td>
+        <td><h5>{{x.reason}}</h5></td>
+        <td><h5>{{ x.date_requested }}</h5></td>       
+    </tr>
+    
+    {% endfor %}
+</table>
+                    <!-- /.card-footer-->
+                  </div>
+                  <!-- /.card -->
+            
+                </section>
+                <!-- /.content -->
+ <style>
+                  .asteriskField
+                  {
+                  content:'*';
+                  color:red;
+                  padding:10px;
+                  font-size:14px;
+              }
+ </style>
+{% endblock %}
+
+
+
+
+
+

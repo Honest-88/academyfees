@@ -1,0 +1,97 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data student </title>
+    <style>
+        @page {
+            size: A4 ;
+            margin: 0in 0in 0in 0in;
+            @top-center {
+                content: "";
+                font-size: large;
+                font-weight: 100;
+            }
+        }
+    </style>
+
+<link rel="icon" href="/static/Logo.jpg" type="image/icon type">
+</head>
+
+
+<body>
+    <sub> {{get_date}}</sub> <br>
+    <sub >Receipt No ##-{{ i.id }}</sub>
+    <center>
+        <img style="width: 100px;" src="/static/Logo.jpg" alt="">
+        <h2>Mayfair Academy</h2>
+        <sup>66-9th Avenue, Mayfair Johannesburg 2092 </sup> <br>
+        <sup><i>P.O. Box 75, Crown Mines 2025 South Africa, Email: info@mayfairacademy.co.za  Tel: 011 8371 899</i></sup>
+        <br>
+        <sup>Student Number </sup>
+    </center>
+
+    <style>
+        table,
+        td {
+            border: 0.1px solid black;
+            padding: 4px;
+            font-size: 11px;
+            border-collapse: collapse;
+            padding: 20px;
+        }
+    </style>
+
+<sup>STUDENT NAME : {{ i.first_name }} {{ i.last_name }}</sup> <br>
+<sup>Student NUMBER : {{ i.student_number }}</sup> <br>
+<sup>Fees Status : {{ i.fees_status }}</sup> <br>
+<sup>Grade : {{ i.grade }}</sup> <br>
+<sup>Month : {{ i.month }}</sup>
+{% if i.avatar %}
+<img  style="width: 150px;height: 150px;margin-left: 600px; margin-top: -300px; border:1px solid black;" src="{{ i.avatar.url }}" alt="">
+{% else %}
+<img  style="width: 150px;height: 150px;margin-left: 600px; margin-top: -300px; border:1px solid black;" src="/static/Logo.jpg" alt="">
+{% endif %}
+    <div style="width: 100%;height:5px;background-color: black;" class="line"></div><br>
+
+
+    </ul>
+    
+{% if not i %}
+oops
+{% else %}
+<table style="width: 100%;">
+
+    <tr>
+        <td>Phone</td>
+        <td>{{ i.parent_phone }}</td>
+    </tr>
+    <tr>
+        <td>Enrolled</td>
+        <td> {{ i.enrolement }}</td>
+    </tr>
+    <tr>
+        <td>Gender</td>
+        <td> {{ i.gender }}</td>
+    </tr>
+    <tr>
+        <td>Enrolment Date</td>
+        <td> {{ i.date_added }}</td>
+    </tr>
+</table>
+
+<td></td>
+                                         
+{% endif %}
+    <br>
+
+    <br>
+    <br>
+    <br>  <br>
+    <br>
+    Sign.........................................................................................Stamp.............................................................................
+</body>
+
+</html>

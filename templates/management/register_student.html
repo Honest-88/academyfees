@@ -1,0 +1,112 @@
+{% extends 'accounts/basedashboard.html' %}
+{% block content %}
+{% load crispy_forms_tags %}
+
+            <div class="content-wrapper" style="min-height: 2836px;">
+                <!-- Content Header (Page header) -->
+                <section class="content-header">
+                  <div class="container-fluid">
+                    <div class="row mb-2">
+                      <div class="col-sm-6">
+                        <h1>Student Registration</h1>
+                        <sub>"the password for all student is 'banking001' request them to change apon login after registration </sub>
+                      </div>
+                      <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                          <li class="breadcrumb-item"><a href="#">Student </a></li>
+                          <li class="breadcrumb-item active">Register </li>
+                        
+                        </ol>
+                      </div>
+                    </div>
+                  </div><!-- /.container-fluid -->
+                </section>
+            
+                <!-- Main content -->
+                <section class="content">
+            
+                  <!-- Default box -->
+                  <div class="card">
+                    <div class="card-header">
+                      <h3 class="card-title">
+                          {% for x in messages %}
+                         <h2 style="color: green;">
+                            {{ x }}</h2>
+                          {% endfor %}
+                      </h3>
+                      <a class="btn btn-info" href="{% url 'list_students' %}"> <span class="fa fa-eye"></span> View </a>
+            
+                      <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                          <i class="fas fa-minus"></i>
+                        </button>
+                        <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
+                          <i class="fas fa-times"></i>
+                        </button>
+                      </div>
+                    </div>
+                    <div class="card-body">
+                     <form action="" method="post" enctype="multipart/form-data">
+                         {% csrf_token %}
+                         <div class="row">
+                            <div class="col-md-3">
+                                {{ form.student_number|as_crispy_field }}
+                            </div>                          
+                             <div class="col-md-3">
+                                 {{ form.first_name|as_crispy_field }}
+                             </div>                  
+                            <div class="col-md-4">
+                                {{ form.last_name|as_crispy_field }}
+                            </div>
+                            <div class="col-md-2">
+                              {{ form.grade|as_crispy_field }}
+                          </div>
+                          <div class="col-md-2">
+                            {{ form.month|as_crispy_field }}
+                        </div>
+                        <div class="col-md-2">
+                          <h4 style="background-color: red;"> {{ form.fees_status|as_crispy_field }}</h4>                       
+                        </div>
+                            <div class="col-md-2">
+                                {{ form.parent_phone|as_crispy_field }}
+                            </div>
+                            <div class="col-md-2">
+                              {{ form.avatar|as_crispy_field }}
+                          </div>
+                            <div class="col-md-4">
+                                {{ form.enrolement|as_crispy_field }}
+                            </div>                                                                    
+                            <div class="col-md-2">
+                              {{ form.gender|as_crispy_field }}
+                          </div>                           
+                            <div class="col-md-1">
+                              <br>
+                              {{ form.active|as_crispy_field }}
+                          </div>
+                         </div>
+                  
+                    </div>
+                    <!-- /.card-body -->
+                    <div class="card-footer">
+                      <button class="btn btn-primary">Register</button>
+                    </div>
+                </form>
+                    <!-- /.card-footer-->
+                  </div>
+                  <!-- /.card -->
+            
+                </section>
+                <!-- /.content -->
+ <style>
+                  .asteriskField
+                  {
+                  content:'*';
+                  color:red;
+                  padding:10px;
+                  font-size:14px;
+              }
+              .form-control{
+                height:50px;
+              }
+ </style>
+{% endblock %}

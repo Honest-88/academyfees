@@ -1,0 +1,23 @@
+{% extends 'accounts/base.html' %} {% block content %} {% load crispy_forms_tags %}
+
+<br>
+<div class="container">
+    <div class="row">
+
+        <div class="col-md-12 bg-light">
+            <br>
+            <center>
+                <h5 class="btn btn-info" style="width: 100%; padding:3px;">TERMS AND CONDITIONS </h5>
+            </center>
+            <ol>
+                {% for x in terms %}
+                <li>{{x.term}} <sub class="float-right"></sub> </li>
+                {% endfor %}
+
+
+            </ol>
+            <a class="float-right btn btn-success" href="{% url 'registeruser' %}">Register</a>
+        </div>
+    </div>
+</div>
+{% endblock content %}

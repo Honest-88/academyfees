@@ -1,0 +1,85 @@
+{% extends 'accounts/basedashboard.html' %}
+{% block content %}
+{% load crispy_forms_tags %}
+
+            <div class="content-wrapper" style="min-height: 2836px;">
+                <!-- Content Header (Page header) -->
+                <section class="content-header">
+                  <div class="container-fluid">
+                    <div class="row mb-2">
+                      <div class="col-sm-6">
+                        <h1>Export Students Per Grade </h1>
+                      
+                      </div>
+                      <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                          <li class="breadcrumb-item"><a href="#">seach   </a></li>
+                          <li class="breadcrumb-item active">student </li>
+                        
+                        </ol>
+                      </div>
+                    </div>
+                  </div><!-- /.container-fluid -->
+                </section>
+            
+                <!-- Main content -->
+                <section class="content">
+            
+                  <!-- Default box -->
+                  <div class="card">
+                    <div class="card-header">
+                      <h3 class="card-title">
+                          {% for x in messages %}
+                         <h2 style="color: green;">
+                            {{ x }}</h2>
+                          {% endfor %}
+                      </h3>
+            
+                      <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                          <i class="fas fa-minus"></i>
+                        </button>
+                        <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
+                          <i class="fas fa-times"></i>
+                        </button>
+                      </div>
+                    </div>
+                    <div class="card-body">
+                     <form class="form-group card " action="" method="post" style="padding: 10px;">
+                         {% csrf_token %}
+                        <div class="row">
+
+                            <div class="col-md-12">
+                         
+                                <label for="">Grade</label>
+                                <select class="form-control" name="grade" id="">
+                                    <option value="">-----------select--------------</option>
+                                    {% for x in grades %}
+                                    <option value="{{ x.id }}">{{ x.grade_name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+                    <!-- /.card-body -->
+                    <div class="card-footer">
+                      <button class="btn btn-primary">Export</button>
+                    </div>
+                </form>
+                    <!-- /.card-footer-->
+                  </div>
+                  <!-- /.card -->
+            
+                </section>
+                <!-- /.content -->
+ <style>
+                  .asteriskField
+                  {
+                  content:'*';
+                  color:red;
+                  padding:10px;
+                  font-size:14px;
+              }
+ </style>
+{% endblock %}

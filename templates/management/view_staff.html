@@ -1,0 +1,149 @@
+{% extends 'accounts/basedashboard.html' %}
+{% block content %}
+{% load crispy_forms_tags %}
+
+            <div class="content-wrapper" style="min-height: 2836px;">
+                <!-- Content Header (Page header) -->
+                <section class="content-header">
+                  <div class="container-fluid">
+                    <div class="row mb-2">
+                      <div class="col-sm-6">
+                        Staff list , Total : <b class=" btn btn-info badge badge-pill">{{ count }}</b>
+                       
+                      </div>
+                      <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                          <li class="breadcrumb-item"><a href="#">Staff </a></li>
+                          <li class="breadcrumb-item active">listings </li>
+                        
+                        </ol>
+                      </div>
+                    </div>
+                  </div><!-- /.container-fluid -->
+                </section>
+            
+                <!-- Main content -->
+                <section class="content">
+            
+                  <!-- Default box -->
+                  <div class="card">
+                    <div class="card-header">
+                      <h3 class="card-title">
+                
+                      </h3>
+                      
+            <a class="btn btn-primary" href="{% url 'register_staff' %}"> <span class="fa fa-plus"></span> ADD </a>
+            <a class="btn btn-info" href="{% url 'export_staff' %}"> <span class="fa fa-copy"></span> PDF </a>
+           
+               
+            
+            <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                          <i class="fas fa-minus"></i>
+                        </button>
+                        <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
+                          <i class="fas fa-times"></i>
+                        </button>
+                      </div>
+                    </div>
+                    <div class="card-body">
+                      {% for x in messages %}
+                      <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong></strong> {{ x }}.
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+            {% endfor %}
+                        <form class="card" style="padding: 10px;" action="" method="GET">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    {{ form.form.role|as_crispy_field }}
+                                </div>
+                               
+                                <div class="col-md-3">
+                                    {{ form.form.registration_number|as_crispy_field }}
+                                </div>                          
+                                <div class="col-md-1">
+                                    <br>
+                                   <button style="width: 100%;" class="btn btn-primary">
+Search
+                                   </button>
+                                </div>
+                            </div>
+                            
+                           
+                        </form> 
+                    
+<table class="table table-sm table-striped table-hover table-responsive-lg " style="width: 100%; font-size: 12px;">
+    <tr>
+        <th>Avatar</th>
+        <th>Registration NO</th>
+        <th>First Name </th>
+        <th>Middle Name</th>
+        <th>Last Name</th>
+        <th>National ID</th>
+        <th>Role</th>
+    
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Active</th>
+        <th>Joined</th>
+        <th>Action</th>
+        <th>Action</th>
+    </tr>
+    {% for x in staff %}
+    <tr>
+        <td>
+            {% if x.avatar %}
+            <img class="shadow" style="width: 40px;border-radius: 100px;" src="{{ x.avatar.url }}" alt="">
+            {% else %}
+            <img class="shadow" style="width: 40px;border-radius: 100px;" src="/static/Logo.jpg" alt="">
+            {% endif %}
+        </td>
+        <td>{{x.registration_number}}</td>
+        <td>{{x.first_name}}</td>
+        <td>{{x.middle_name}}</td>
+        <td>{{x.last_name}}</td>
+        <td>{{x.national_ID}}</td>
+
+        <td style="color: green;">{{x.role|upper}}</td>
+        
+        <td>{{x.email}}</td>
+        <td>{{ x.phone }}</td>
+        {% if x.active %}
+        <td><button class="btn btn-sm badge badge-pill btn-success">Active</button></td>
+        {% else %}
+        <td><button class="btn btn-sm badge badge-pill btn-danger">InActive</button></td>
+        {% endif %}
+        <td>{{ x.date_added }}</td>
+        <td><a href="{% url  'update_staff' x.id  %} "> <span class="fa fa-edit"></span></a></td>
+        <td><a href=""> <span class="fa fa-trash"></span></a></td>
+    </tr>
+    {% endfor %}
+</table>
+                    <!-- /.card-footer-->
+                  </div>
+                  <!-- /.card -->
+            
+                </section>
+                <!-- /.content -->
+ <style>
+                  .asteriskField
+                  {
+                  content:'*';
+                  color:red;
+                  padding:10px;
+                  font-size:14px;
+              }
+              .form-control{
+                  height: 40px;
+              }
+ </style>
+{% endblock %}
+
+
+
+
+
+

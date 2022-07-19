@@ -1,0 +1,112 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>lec</title>
+    <style>
+        @page {
+            size: A4 LANDSCAPE;
+            margin: 0in 0in 0in 0in;
+            @top-center {
+                content: "";
+                font-size: large;
+                font-weight: 100;
+            }
+        }
+    </style>
+
+<link rel="icon" href="/static/Logo.jpg" type="image/icon type">
+</head>
+
+
+<body>
+    <sub> {{get_date}}</sub>
+    <center>
+        <img style="width: 100px;" src="/static/Logo.jpg" alt="">
+        <h2>Mayfair Academy</h2>
+        <sup>66-9th Avenue, Mayfair Johannesburg 2092 </sup> <br>
+        <sup><i>P.O. Box 75, Crown Mines 2025 South Africa, Email: info@mayfairacademy.co.za  Tel: 011 8371 899</i></sup>
+
+        <br>
+        <sup>Staff Listing </sup>
+    </center>
+
+    <style>
+        table,
+        th,
+        td {
+            border: 0.1px solid black;
+            padding: 4px;
+            font-size: 11px;
+            border-collapse: collapse;
+        }
+    </style>
+
+<sup>Printed by: {{u}}  , Total : {{ count }}</sup><br>
+
+
+    <div style="width: 100%;height:5px;background-color: black;" class="line"></div><br>
+
+
+    </ul>
+    
+{% if not lecturer %}
+<center>
+    <h1>
+        No staff found 
+    </h1>
+</center>
+{% else %}<table class="table table-sm table-striped table-hover table-responsive-lg " style="width: 100%; font-size: 12px;">
+    <tr>
+        <th>Avatar</th>
+        <th>Staff Number</th>
+        <th>First Name </th>
+        <th>Middle Name</th>
+        <th>Last Name</th>
+        <th>Role</th>
+        <th>Phone</th>
+        <th>Email</th>
+        <th>Active</th>
+        <th>Joined</th>
+    
+    </tr>
+    {% for x in lecturer %}
+    <tr>
+        <td>
+            {% if x.avatar %}
+            <img class="shadow" style="width: 40px;border-radius: 100px;" src="{{ x.avatar.url }}" alt="">
+            {% else %}
+            <img class="shadow" style="width: 40px;border-radius: 100px;" src="/static/Logo.jpg" alt="">
+            {% endif %}
+        </td>
+        <td>{{x.registration_number}}</td>
+        <td>{{x.first_name}}</td>
+        <td>{{x.middle_name}}</td>
+        <td>{{x.last_name}}</td>
+        <td>{{x.role}}</td>
+        <td>{{ x.phone }}</td>
+        <td>{{x.email}}</td>
+        {% if x.active %}
+        <td><button class="btn btn-sm badge badge-pill btn-success">Active</button></td>
+        {% else %}
+        <td><button class="btn btn-sm badge badge-pill btn-danger">InActive</button></td>
+        {% endif %}
+        <td>{{ x.date_added }}</td>
+
+    </tr>
+    {% endfor %}
+</table>
+
+{% endif %}
+    <br>
+
+    <br>
+    <br>
+    <br>  <br>
+    <br>
+    Sign.........................................................................................Stamp.............................................................................
+</body>
+
+</html>

@@ -1,0 +1,148 @@
+{% extends 'accounts/basedashboard.html' %}
+{% block content %}
+{% load crispy_forms_tags %}
+
+            <div class="content-wrapper" style="min-height: 2836px;">
+                <!-- Content Header (Page header) -->
+                <section class="content-header">
+                  <div class="container-fluid">
+                    <div class="row mb-2">
+                      <div class="col-sm-6">
+                        <h5>FEES PAYMENT HISTORY -  {{ count }} Transactions    </h5>
+                      
+                      </div>
+                      <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                          <li class="breadcrumb-item"><a href="#">Fees   </a></li>
+                          <li class="breadcrumb-item active">History </li>
+                        
+                        </ol>
+                      </div>
+                    </div>
+                  </div><!-- /.container-fluid -->
+                </section>
+            
+                <!-- Main content -->
+                <section class="content">
+            
+                  <!-- Default box -->
+                  <div class="card">
+                    <div class="card-header">
+                      <h3 class="card-title">
+        
+                        
+                      </h3>
+            <a class="btn btn-primary" href="{% url 'search_student' %}"><span class="fa fa-plus"></span> PAY FEE </a>
+            <a class="btn btn-info" href="{% url 'export_transactions' %}"><span class="fa fa-copy"></span> Export All Transactions </a>
+                      <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                          <i class="fas fa-minus"></i>
+                        </button>
+                        <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
+                          <i class="fas fa-times"></i>
+                        </button>
+                      </div>
+                    </div>
+                    <div class="card-body">
+                      {% for x in messages %}
+                      <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong></strong> {{ x }}.
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+            {% endfor %}
+            
+                      <div class="card">
+                        <form style="padding: 10px;" action="" method="GET">
+                          <div class="row">
+                            <div class="col-md-2">
+                            {{ form.form.student_number|as_crispy_field }}
+                            </div>
+                            <div class="col-md-2">
+                              {{ form.form.month|as_crispy_field }}
+                              </div>
+                                <div class="col-md-2">
+                                  {{ form.form.reference_code|as_crispy_field }}
+                                  </div>
+                                  <div class="col-md-2">
+                                    {{ form.form.grade|as_crispy_field }}
+                                    </div>
+                                    <div class="col-md-2">
+                                      {{ form.form.year|as_crispy_field }}
+                                      </div>
+                                      <div class="col-md-1">
+                                        {{ form.form.id|as_crispy_field }}
+                                        </div>
+                                        <div class="col-md-1">
+                                          <br>
+                                          <button class="btn btn-info"> Search</button>
+                                          </div>
+                          </div>
+                        
+                        </form>
+                      </div>
+                        <table class="table table-sm table-responsive-lg " style="font-size: 12px;">
+<tr>
+    <th style="background-color:rgb(0, 255, 51);"><h6 style="color: black ;"><strong>Name</strong></h6></th>
+    <th style="background-color:rgb(0, 255, 51);"><h6 style="color: black ;"><strong>Student Number</strong></h6></th>
+    <th><h6>Grade</h6></th>
+    <th><h6>Month</h6></th>
+    <th style="background-color:rgb(210, 0, 0);"><h6 style="color: black ;"><strong>Prev Arrears</strong></h6></th>
+    <th><h6>Amount Paid </h6></th>
+    <th style="background-color:rgb(0, 255, 51);"><h6 style="color: black ;"> Current Arrears</h6></th>
+    <th style="background-color:rgb(255, 106, 0);"><h6 style="color: black ;">Fees Status</h6></th>
+    <th><h6>Payment Method</h6></th>
+    <th><h6>Reference code</h6></th>
+    <th><h6>Year</h6></th>
+    <th><h6>Paid By</h6></th>
+    <th><h6>Transaction Date/Time</h6></th>
+    <th><h6>Print</h6></th>
+    <th><h6>Edit</h6></th>
+</tr>
+                 
+{% for x in fee %}
+<tr>
+    <td style="background-color:rgb(0, 0, 0);"><h6 style="color: rgb(255, 255, 255) ;"><strong>{{ x.student_name }}</strong></h6></td>
+    <td style="background-color:rgb(0, 0, 0);"><h6 style="color: rgb(255, 255, 255) ;"><strong>{{ x.student_number }}</strong></h6></td>
+    <td><h6>{{ x.grade }}</h6></td>
+    <td><h6>{{ x.month }}</h6></td>
+    <td style="background-color:rgb(210, 0, 0);"><h6 style="color: rgb(255, 255, 255) ;"><strong>R {{ x.previous_arrears }}</strong></h6></td>
+    <td><h6>R {{ x.amount_paid }}</h6></td>
+    <td style="background-color: rgb(255, 72, 0);"><h6 style="color: rgb(0, 0, 0);"> <strong>R {{ x.current_arrears }}</strong></h6></td>
+    <td style="background-color: rgb(0, 255, 234);"><h6 style="color:rgb(0, 0, 0)"><strong> {{ x.fees_status }}</strong></h6></td>
+
+    <td><h6>{{ x.payment_method }}</h6></td>
+    <td><h6>{{ x.reference_code }}</h6></td>
+    <td><h6>{{ x.year }}</h6></td>
+    <td><h6>{{ x.paid_by }}</h6></td>
+    <td><h6>{{ x.date_added }}</h6></td>
+    
+    <td><a class="btn btn-sm btn-info" href="{% url 'edit_payment' x.id %}">Edit <span class="fa fa-edit"></span></a></td>
+    <td><a class="btn btn-sm btn-success" href="{% url 'export_one' x.id %}">Print <span class="fa fa-copy"></span></a></td>
+    
+</tr>
+                            {% endfor %}
+                        </table>
+  
+                      <br>  <!-- /.card-body -->
+                    <div class="card-footer">
+                                                           
+                    </div>
+              
+                    <!-- /.card-footer-->
+                  </div>
+                  <!-- /.card -->
+            
+                </section>
+                <!-- /.content -->
+ <style>
+                  .asteriskField
+                  {
+                  content:'*';
+                  color:red;
+                  padding:10px;
+                  font-size:14px;
+              }
+ </style>
+{% endblock %}

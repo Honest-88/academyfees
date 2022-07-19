@@ -1,0 +1,107 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>all transactions </title>
+    <style>
+        @page {
+            size: A4 LANDSCAPE;
+            margin: 0in 0in 0in 0in;
+            @top-center {
+                content: "";
+                font-size: large;
+                font-weight: 100;
+            }
+        }
+    </style>
+
+<link rel="icon" href="/static/Logo.jpg" type="image/icon type">
+</head>
+
+
+<body>
+    <sub> {{get_date}}</sub>
+    <center>
+        <img style="width: 100px;" src="/static/Logo.jpg" alt="">
+        <h2>Mayfair Academy</h2>
+        <sup>66-9th Avenue, Mayfair Johannesburg 2092 </sup> <br>
+        <sup><i>P.O. Box 75, Crown Mines 2025 South Africa, Email: info@mayfairacademy.co.za  Tel: 011 8371 899</i></sup>
+        <br>
+        <sup>transactions Listing </sup>
+    </center>
+
+    <style>
+        table,
+        th,
+        td {
+            border: 0.1px solid black;
+            padding: 4px;
+            font-size: 11px;
+            border-collapse: collapse;
+        }
+    </style>
+
+<sup>Printed by: {{u}}  , Total : {{ count }}</sup><br>
+
+
+    <div style="width: 100%;height:5px;background-color: black;" class="line"></div><br>
+
+
+    </ul>
+    
+{% if not fee %}
+<center>
+    <h1>
+        No transactions found 
+    </h1>
+</center>
+{% else %}
+<table class=" " style="font-size: 12px;width: 100%;">
+    <tr>
+        <th>Name</th>
+        <th>Student Number</th>
+        <th>Grade</th>
+        <th>Month</th>
+        <th>Prev Arrears</th>
+        <th>Amount Paid </th>
+        <th>Current Arrears</th>
+        <th>Payment Method</th>
+        <th>Reference code</th>
+        <th>Year</th>
+        <th>Paid By</th>
+        <th>Transaction Date/Time</th>
+
+    </tr>
+                     
+                                {% for x in fee %}
+    <tr>
+        <td>{{ x.student_name }}</td>
+        <td>{{ x.student_number }}</td>
+        <td>{{ x.grade }}</td>
+        <td>{{ x.month }}</td>
+        <td>{{ x.previous_arrears }}</td>
+        <td>{{ x.amount_paid }}</td>
+        <td>{{ x.current_arrears }}</td>
+        <td>{{ x.payment_method }}</td>
+        <td>{{ x.reference_code }}</td>
+        <td>{{ x.year }}</td>
+        <td>{{ x.paid_by }}</td>
+        <td>{{ x.date_added }}</td>
+     
+    
+    </tr>
+                                {% endfor %}
+                            </table>
+{% endif %}
+    <br>
+
+    <br>
+    <br>
+    <br>  <br>
+    <br>
+    Sign.........................................................................................Stamp.............................................................................
+</body>
+
+</html>

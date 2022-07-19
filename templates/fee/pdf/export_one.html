@@ -1,0 +1,106 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>student receipt </title>
+    <style>
+        @page {
+            size: A4 ;
+            margin: 0in 0in 0in 0in;
+            @top-center {
+                content: "";
+                font-size: large;
+                font-weight: 100;
+            }
+        }
+    </style>
+
+<link rel="icon" href="/static/Logo.jpg" type="image/icon type">
+</head>
+
+
+<body>
+    <sub> {{get_date}}</sub> <br>
+    <sub >Receipt No ##-{{ i.id }}</sub>
+    <center>
+        <img style="width: 100px;" src="/static/Logo.jpg" alt="">
+        <h2>Mayfair Academy</h2>
+        <sup>66-9th Avenue, Mayfair Johannesburg 2092 </sup> <br>
+        <sup><i>P.O. Box 75, Crown Mines 2025 South Africa, Email: info@mayfairacademy.co.za  Tel: 011 8371 899</i></sup>
+<br>
+        <sup>Fees Payment Receipt </sup>
+    </center>
+
+    <style>
+        table,
+        td {
+            border: 0.1px solid black;
+            padding: 4px;
+            font-size: 11px;
+            border-collapse: collapse;
+            padding: 20px;
+        }
+    </style>
+
+<sup>STUDENT NAME : {{ i.student_name }}</sup> <br>
+<sup>STUDENT NUMBER : {{ i.student_number }}</sup> <br>
+<sup>Grade : {{ i.grade }}</sup> <br>
+<sup>YEAR : {{ i.year }}</sup> <br>
+<sup>Printed by: {{u}} </sup><br>
+<sup>Month : {{ i.month }}</sup>
+
+
+    <div style="width: 100%;height:5px;background-color: black;" class="line"></div><br>
+
+
+    </ul>
+    
+{% if not i %}
+oops
+{% else %}
+<table style="width: 100%;">
+
+    <tr>
+        <td>Previous Arrares</td>
+        <td>R {{ i.previous_arrears }}</td>
+    </tr>
+    <tr>
+        <td>Amount Paid </td>
+        <td>R {{ i.amount_paid }}</td>
+    </tr>
+    <tr>
+        <td>Current Arrares</td>
+        <td> {{ i.current_arrears }}</td>
+    </tr>
+    <tr>
+        <td>Payment Method</td>
+        <td> {{ i.payment_method }}</td>
+    </tr>
+    <tr>
+        <td>Transaction Reference</td>
+        <td> {{ i.reference_code }}</td>
+    </tr>
+    <tr>
+        <td>Paid By</td>
+        <td> {{ i.paid_by }}</td>
+    </tr>
+</table>
+
+
+
+<td></td>
+                  
+                           
+{% endif %}
+    <br>
+
+    <br>
+    <br>
+    <br>  <br>
+    <br>
+    Sign.........................................................................................Stamp.............................................................................
+</body>
+
+</html>

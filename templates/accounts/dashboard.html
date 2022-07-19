@@ -1,0 +1,361 @@
+{% extends 'accounts/basedashboard.html' %} {% block content %}
+{% if request.user.is_superuser %}
+<div class="content-wrapper">
+    <section class="content-header">
+        <div class="container-fluid">
+        <!-- Content Header (Page header) -->
+                <section class="content-header">
+                  <div class="container-fluid">
+                    <div class="row mb-2">
+                      <div class="col-sm-6">
+                  
+                      </div>
+                      <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                          <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Home</a></li>
+                          <li class="breadcrumb-item active">Dashboard</li>
+                        </ol>
+                      </div>
+                    </div>
+                  </div><!-- /.container-fluid -->
+                </section>
+            
+                <!-- Main content -->
+                <section class="content">
+                  <div class="container-fluid">
+                    <h5 class="mb-2">Mayfair Academy | Admin Web Portal</h5>
+                    <div class="row">
+                      <!-- /.col -->
+
+                      <div class="col-md-3 col-sm-6 col-12">
+                        <div class="info-box">
+                          <span class="info-box-icon ">
+                            <div class="overlay"><i style="color: rgb(6, 0, 128);" class="fa fa-cog fa-spin fa-2x fa-fw"></i></div>
+                          </span>
+                          
+                          <div class="info-box-content">
+                            <span class="fa fa-money-bill-wave"><p style="color: rgb(6, 0, 128);">Today's Collections</p></span>
+                            <span class="info-box-number"><p style="color: rgb(6, 0, 128);">R {{ this_day_total }}</p></span>
+                          </div> 
+                                               
+                          <!-- /.info-box-content -->
+                        </div>
+                        <!-- /.info-box -->
+                      </div>
+
+                      <div class="col-md-3 col-sm-6 col-12">
+                        <div class="info-box">
+                          <span class="info-box-icon ">
+                            <div class="overlay"><i style="color: rgb(193, 7, 7);" class="fa fa-spinner fa-pulse fa-2x fa-fw"></i></div>
+                          </span>
+                          
+                          <div class="info-box-content">
+                            <span class="fa fa-money-bill-wave"><p style="color: rgb(193, 7, 7);">This Month's Collections</p></span>
+                            <span class="info-box-number"><p style="color: rgb(193, 7, 7);">R {{ this_month_total }}</p></span>
+                          </div>    
+                                             
+                          <!-- /.info-box-content -->
+                        </div>
+                        <!-- /.info-box -->
+                      </div>
+
+                      
+                      <div class="col-md-3 col-sm-6 col-12">
+                        <div class="info-box">
+                          <span class="info-box-icon ">
+                            <div class="overlay"><i style="color: rgb(1, 164, 39);" class="fas fa-2x fa-sync-alt fa-spin"></i></div>
+                          </span>
+                          
+                          <div class="info-box-content">
+                            <span class="fa fa-money-bill-wave"><p style="color: rgb(1, 164, 39);">This Year's Collections</p></span>
+                            <span class="info-box-number"><p style="color: rgb(1, 164, 39);">R {{ this_year_total }}</p></span>
+                          </div>   
+                                             
+                          <!-- /.info-box-content -->
+                        </div>
+                        <!-- /.info-box -->
+                      </div>
+
+                      <div class="col-md-3 col-sm-6 col-12">
+                        <div class="info-box">
+                          <span class="info-box-icon ">
+                            <div class="overlay"><i style="color: rgb(216, 93, 6);" class="fa fa-circle-notch fa-spin fa-2x fa-fw"></i></div>
+                          </span>
+                          
+                          <div class="info-box-content">
+                            <span class="fa fa-money-bill-wave"><p style="color: rgb(216, 93, 6);">Ovaral Total Collections</p></span>
+                            <span class="info-box-number"><p style="color: rgb(216, 93, 6);">R {{ total_fee }}</p></span>
+                          </div> 
+                                               
+                          <!-- /.info-box-content -->
+                        </div>
+                        <!-- /.info-box -->
+                      </div>
+
+                      <div class="col-md-3 col-sm-6 col-12">
+                        <div class="info-box">
+                          <span class="info-box-icon ">
+                            <div class="overlay"><i style="color: rgb(1, 164, 39);"  class="fas fa-2x fa-sync-alt fa-spin"></i></div>
+                          </span>
+                          
+                          <div class="info-box-content">
+                            <span class="fa fa-battery-half"><p style="color: rgb(1, 164, 39);" >Today's Expenses</p></span>
+                           
+                            <span class="info-box-number"><p style="color: rgb(1, 164, 39);" >R {{ this_day_exp_total }}</p></span>
+                    
+                          </div>                       
+                          <!-- /.info-box-content -->
+                        </div>
+                        <!-- /.info-box -->
+                      </div>
+
+                      <div class="col-md-3 col-sm-6 col-12">
+                        <div class="info-box">
+                          <span class="info-box-icon ">
+                            <div class="overlay"><i style="color: rgb(6, 0, 128);" class="fa fa-cog fa-spin fa-2x fa-fw"></i></div>
+                          </span>
+                          
+                          <div class="info-box-content">
+                            <span class="fa fa-battery-half"><p style="color: rgb(6, 0, 128);">This Month's Expenses</p></span>
+                           
+                            <span class="info-box-number"><p style="color: rgb(6, 0, 128);">R {{ this_month_exp_total }}</p></span>
+                    
+                          </div>                       
+                          <!-- /.info-box-content -->
+                        </div>
+                        <!-- /.info-box -->
+                      </div>
+
+                      <div class="col-md-3 col-sm-6 col-12">
+                        <div class="info-box">
+                          <span class="info-box-icon ">
+                            <div class="overlay"><i style="color: rgb(216, 93, 6);" class="fa fa-circle-notch fa-spin fa-2x fa-fw"></i></div>
+                          </span>
+                          
+                          <div class="info-box-content">
+                            <span class="fa fa-battery-half"><p style="color: rgb(216, 93, 6);">This Year's Expenses</p></span>
+                           
+                            <span class="info-box-number"><p style="color: rgb(216, 93, 6);">R {{ this_year_exp_total }}</p></span>
+                    
+                          </div>                       
+                          <!-- /.info-box-content -->
+                        </div>
+                        <!-- /.info-box -->
+                      </div>
+
+                      <div class="col-md-3 col-sm-6 col-12">
+                        <div class="info-box">
+                          <span class="info-box-icon ">
+                            <div class="overlay"><i style="color: rgb(6, 97, 216);" class="fa fa-spinner fa-pulse fa-2x fa-fw"></i></div>
+                          </span>
+                          
+                          <div class="info-box-content">
+                            <span class="fa fa-battery-half"><p style="color: rgb(6, 97, 216);">Ovaral Expenses</p></span>
+                           
+                            <span class="info-box-number"><p style="color: rgb(6, 97, 216);">R {{ total_expe }}</p></span>
+                    
+                          </div>                       
+                          <!-- /.info-box-content -->
+                        </div>
+                        <!-- /.info-box -->
+                      </div>
+
+                      <div class="col-md-3 col-sm-6 col-12">
+                        <div class="info-box">
+                          <span class="info-box-icon ">
+                            <div class="overlay"><i style="color: rgb(216, 93, 6);" class="fa fa-spinner fa-spin fa-2x fa-fw"></i></div>
+                          </span>
+                          
+                          <div class="info-box-content">
+                            <span class="fa fa-building"><p style="color: rgb(216, 93, 6);">School Assets Total Worth</p></span>
+                            <span class="info-box-number"><p style="color: rgb(216, 93, 6);">R {{ total_asset }}</p></span>
+                          </div>                       
+                          <!-- /.info-box-content -->
+                        </div>
+                        <!-- /.info-box -->
+                      </div>
+
+                      <div class="col-md-3 col-sm-6 col-12">
+                        <div class="info-box">
+                          <span class="info-box-icon ">
+                            <div class="overlay"><i style="color: rgb(216, 6, 38);" class="fa fa-cog fa-spin fa-2x fa-fw"></i></div>
+                          </span>
+                          
+                          <div class="info-box-content">
+                            <span class="fa fa-users"><p style="color: rgb(216, 6, 38);">Students</p></span>
+                            <span class="info-box-number"><p style="color: rgb(216, 6, 38);">{{ student_count }}</p></span>
+                          </div>                       
+                          <!-- /.info-box-content -->
+                        </div>
+                        <!-- /.info-box -->
+                      </div>
+                 
+                      <!-- /.col -->
+                      <div class="col-md-3 col-sm-6 col-12">
+                        <div class="info-box">
+                          <span class="info-box-icon bg-success"><i class="fa fa-users"></i></span>
+            
+                          <div class="info-box-content">
+                            <span class="info-box-text">Teachers</span>
+                            <span class="info-box-number">{{ teachers_count }}</span>
+                          </div>
+                          <!-- /.info-box-content -->
+                        </div>
+                        <!-- /.info-box -->
+                      </div>
+                      <!-- /.col -->
+                      <div class="col-md-3 col-sm-6 col-12">
+                        <div class="info-box">
+                          <span class="info-box-icon bg-warning"><i class="fa fa-users"></i></span>
+            
+                          <div class="info-box-content">
+                            <span class="info-box-text">Accountant</span>
+                            <span class="info-box-number">{{ accountant_count }}</span>
+                          </div>
+                          <!-- /.info-box-content -->
+                        </div>
+                        <!-- /.info-box -->
+                      </div>
+
+                      <!-- /.col -->
+                      <div class="col-md-3 col-sm-6 col-12">
+                        <div class="info-box">
+                          <span class="info-box-icon bg-danger"><i class="fa fa-users"></i></span>
+            
+                          <div class="info-box-content">
+                            <span class="info-box-text">Superuser</span>
+                            <span class="info-box-number">{{ superuser_count }}</span>
+                          </div>
+                          <!-- /.info-box-content -->
+                        </div>
+                        <!-- /.info-box -->
+                      </div>
+
+                    </div>
+                    <!-- /.row -->
+            {% for x in s %}
+                    <!-- =========================================================== -->
+                    <h5 class="mb-2">Settings <small><i>.</i></small></h5>
+                    <div class="row">
+                      <div class="col-md-3 col-sm-6 col-12">
+                        <div class="info-box shadow-none">
+                          <span class="info-box-icon bg-info"><i class="far fa-envelope"></i></span>
+            
+                          <div class="info-box-content">
+                            <span class="info-box-text">Year</span>
+                            <span class="info-box-number">{{ x.year }}</span>
+                          </div>
+                          <!-- /.info-box-content -->
+                        </div>
+                        <!-- /.info-box -->
+                      </div>
+                      <!-- /.col -->
+                      <div class="col-md-3 col-sm-6 col-12">
+                        <div class="info-box shadow-sm">
+                          <span class="info-box-icon bg-success"><i class="far fa-flag"></i></span>
+            
+                          <div class="info-box-content">
+                            <span class="info-box-text">Term</span>
+                            <span class="info-box-number">{{ x.month }}</span>
+                          </div>
+                          <!-- /.info-box-content -->
+                        </div>
+                        <!-- /.info-box -->
+                      </div>
+                      <!-- /.col -->
+                      <div class="col-md-3 col-sm-6 col-12">
+                        <div class="info-box shadow">
+                          <span class="info-box-icon bg-warning"><i class="far fa-copy"></i></span>
+            
+                          <div class="info-box-content">
+                            <span class="info-box-text">Closing dates</span>
+                            <span class="info-box-number">{{ x.closing_date }}</span>
+                          </div>
+                          <!-- /.info-box-content -->
+                        </div>
+                        <!-- /.info-box -->
+                      </div>
+                      <!-- /.col -->
+                      <div class="col-md-3 col-sm-6 col-12">
+                        <div class="info-box shadow-lg">
+                          <span class="info-box-icon bg-danger"><i class="far fa-star"></i></span>
+            
+                          <div class="info-box-content">
+                            <span class="info-box-text">Opening Date</span>
+                            <span class="info-box-number">{{ x.opening_date }}</span>
+                          </div>
+                          <!-- /.info-box-content -->
+                        </div>
+                        <!-- /.info-box -->
+                      </div>
+                      <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
+            {% endfor %}
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Analysis</h3>
+      
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                  <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
+                    <i class="fas fa-times"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="card-body">
+                <canvas id="bar-chart" width="800" height="220"></canvas>
+              </div>
+              <!-- /.card-body -->
+              <div class="card-footer">
+               Mayfair Academy - 66-9th Avenue, Mayfair, Johannesburg, 2092 P.O. Box 75, Crown Mines 2025 South Africa 
+              </div>
+              <!-- /.card-footer-->
+            </div>
+                  </div>
+                </section>
+        </div></section>
+</div>
+
+<input hidden type="number" value="{{ student_count }}" id="student_count">
+<input  hidden type="number" value="{{ teachers_count }}" id="teachers_count">
+<input hidden type="number" value="{{ superuser_count }}" id="superuser_count">
+<input hidden type="number" value="{{ accountant_count }}" id="accountant_count">
+
+<script>
+  // Bar chart
+student_count=document.getElementById('student_count').value;
+teachers_count=document.getElementById('teachers_count').value;
+superuser_count=document.getElementById('superuser_count').value;
+accountant_count=document.getElementById('accountant_count').value;
+console.log(student_count)
+new Chart(document.getElementById("bar-chart"), {
+    type: 'bar',
+    data: {
+      labels: ["Students", "Teachers", "Superusers", "Accountants"],
+      datasets: [
+        {
+          label: "Population (millions)",
+          backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9"],
+          data: [student_count,teachers_count,superuser_count,accountant_count]
+        }
+      ]
+    },
+    options: {
+      legend: { display: false },
+      title: {
+        display: true,
+        text: 'School population (count) '
+      }
+    }
+});
+</script>
+{% else %}
+<h1>
+  WILL BE BACK SOON
+</h1>
+{% endif %}
+
+{% endblock content %}

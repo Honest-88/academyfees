@@ -1,0 +1,162 @@
+{% extends 'accounts/basedashboard.html' %}
+{% block content %}
+{% load crispy_forms_tags %}
+
+            <div class="content-wrapper" style="min-height: 2836px;">
+                <!-- Content Header (Page header) -->
+                <section class="content-header">
+                  <div class="container-fluid">
+                    <div class="row mb-2">
+                      <div class="col-sm-6">
+                        Student list , Total : <b class=" btn btn-info badge badge-pill">{{ count }}</b>
+                       
+                      </div>
+                      <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                          <li class="breadcrumb-item"><a href="#">Student </a></li>
+                          <li class="breadcrumb-item active">listings </li>
+                        
+                        </ol>
+                      </div>
+                    </div>
+                  </div><!-- /.container-fluid -->
+                </section>
+            
+                <!-- Main content -->
+                <section class="content">
+            
+                  <!-- Default box -->
+                  <div class="card">
+                    <div class="card-header">
+                      <h3 class="card-title">
+ 
+                      </h3>
+            <a class="btn btn-primary" href="{% url 'register_student' %}"> <span class="fa fa-plus"></span> ADD </a>
+            <a class="btn btn-secondary" href="{% url 'search_student_export' %}"> <span class="fa fa-copy"></span> EXport PDF </a>
+               
+            
+            <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                          <i class="fas fa-minus"></i>
+                        </button>
+                        <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
+                          <i class="fas fa-times"></i>
+                        </button>
+                      </div>
+                    </div>
+                    <div class="card-body">
+                      {% for x in messages %}
+                      <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong></strong> {{ x }}.
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+            {% endfor %}
+                        <form class="card" style="padding: 10px;" action="" method="GET">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    {{ form.form.student_number|as_crispy_field }}
+                                </div>
+                                <div class="col-md-3">
+                                  {{ form.form.first_name|as_crispy_field }}
+                                </div>
+                                <div class="col-md-3">
+                                  {{ form.form.last_name|as_crispy_field }}
+                                </div>
+                                <div class="col-md-1">
+                                    {{ form.form.grade|as_crispy_field }}
+                                </div>
+                                <div class="col-md-1">
+                                    {{ form.form.fees_status|as_crispy_field }}
+                                </div>
+                                
+                                <div class="col-md-1">
+                                    {{ form.form.parent_phone|as_crispy_field }}
+                                </div>
+                                <div class="col-md-1">
+                                    {{ form.form.enrolement|as_crispy_field }}
+                                </div>
+                                <div class="col-md-1">
+                                    {{ form.form.month|as_crispy_field }}
+                                </div>
+                                <div class="col-md-1">
+                                    {{ form.form.gender|as_crispy_field }}
+                                </div>
+                                <div class="col-md-1">
+                                    <br>
+                                   <button class=" btn btn-primary"> <span class="fa fa-search"></span></button>
+                                </div>
+                            </div>
+                        </form> 
+                    
+<table class="table table-sm table-striped table-hover table-responsive-lg " style="width: 100%; font-size: 12px;">
+    <tr>
+      <th>Print <span class="fa fa-copy"></span></th>
+        <th>Avatar</th>
+        <th style="background-color:rgb(0, 0, 0);"><h6 style="color: rgb(255, 255, 255) ;">Student NO</h6></th>
+        <th style="background-color:rgb(12, 223, 223);"><h6 style="color: rgb(3, 0, 0) ;">First Name</h6> </th>
+        <th style="background-color:rgb(12, 223, 223);"><h6 style="color: rgb(0, 0, 0) ;">Last Name</h6></th>
+        <th style="background-color:rgb(225, 4, 4);"><h6 style="color: rgb(0, 0, 0) ;">Grade</h6></th>
+        <th style="background-color:rgb(0, 0, 0);"><h6 style="color: rgb(255, 255, 255) ;">Month</h6></th>
+        <th style="background-color:rgb(255, 106, 0);"><h6 style="color: black ;">Fees Status</h6></th>
+        <th>Parent Phone</th>
+        <th>Enrolement</th>
+        <th>Gender</th>
+        <th>Active</th>
+        <th>Joined</th>
+        <th>Action</th>
+        <th>Action</th>
+    </tr>
+    {% for x in student %}  
+    <tr>
+      <td><a href="{% url 'single_student_export' x.id %}"> Print </a></td>
+        <td>
+            {% if x.avatar %}
+            <img class="shadow" style="width: 40px;border-radius: 100px;" src="{{ x.avatar.url }}" alt="">
+            {% else %}
+            <img class="shadow" style="width: 40px;border-radius: 100px;" src="/static/Logo.jpg" alt="">
+            {% endif %}
+        </td>
+        <td style="background-color:rgb(0, 0, 0);"><h6 style="color: rgb(255, 255, 255) ;">{{x.student_number}}</h6></td>
+        <td style="background-color:rgb(12, 223, 223);"><h6 style="color: rgb(0, 0, 0) ;">{{x.first_name}}</td>
+        <td style="background-color:rgb(12, 223, 223);"><h6 style="color: rgb(0, 0, 0) ;">{{x.last_name}}</h6></td>
+        <td style="background-color:rgb(225, 4, 4);"><h6 style="color: rgb(0, 0, 0) ;">{{x.grade}}</h6></td>
+        <td style="background-color:rgb(0, 0, 0);"><h6 style="color: rgb(255, 255, 255) ;">{{ x.month }}</h6></td>
+        <td style="background-color: rgb(0, 255, 234);"><h6 style="color:rgb(0, 0, 0)">{{ x.fees_status }}</h6></td>
+        <td>{{x.parent_phone}}</td>
+        <td>{{x.enrolement}}</td>
+        <td>{{ x.gender }}</td>
+        {% if x.active %}
+        <td><button class="btn btn-sm badge badge-pill btn-success">Active</button></td>
+        {% else %}
+        <td><button class="btn btn-sm badge badge-pill btn-danger">InActive</button></td>
+        {% endif %}
+        <td>{{ x.date_added }}</td>
+        <td><a href="{% url  'update_student' x.id  %} "> <span class="fa fa-edit"></span></a></td>
+        <td><a href=""> <span class="fa fa-trash"></span></a></td>
+    </tr>
+    {% endfor %}
+</table>
+                    <!-- /.card-footer-->
+                  </div>
+                  <!-- /.card -->
+            
+                </section>
+                <!-- /.content -->
+ <style>
+                  .asteriskField
+                  {
+                  content:'*';
+                  color:red;
+                  padding:10px;
+                  font-size:14px;
+              }
+ </style>
+{% endblock %}
+
+
+
+
+
+
