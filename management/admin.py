@@ -6,7 +6,7 @@ from import_export.admin import ImportExportModelAdmin
 @admin.register(Student)
 class StudentAdmin(ImportExportModelAdmin):
     search_fields=( 
-        'student_number','first_name','last_name','month','grade','parent_phone',)
+        'student_number','first_name','last_name','parent_phone')
     list_filter=(
        'month','grade', 'fees_status','enrolement', 'gender','active',
     )
