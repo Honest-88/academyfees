@@ -9,10 +9,7 @@ from import_export.admin import ImportExportModelAdmin
 @admin.register(Payment)
 class PaymentAdmin(ImportExportModelAdmin):
     search_fields=( 
-        'student_number','student_name','month',
-'previous_arrears','amount_paid','current_arrears',
-'payment_method','reference_code','grade','date_added',
-'year','paid_by')
+        'student_number','student_name','payment_method','reference_code','year','paid_by')
     list_filter=(
         'student_number','student_name','month','fees_status',
 'previous_arrears','amount_paid','current_arrears',
