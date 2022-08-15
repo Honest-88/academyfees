@@ -25,11 +25,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'eo1wxzytp#$0=6xed9z7_du=t1(a%dop0k5obwvq_sqq@k0000888887333334$$####$%%^^^9k1s'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ["6126-197-184-176-103.eu.ngrok.io"]
+ALLOWED_HOSTS = ["shoolfees.herokuapp.com"]
 
-CSRF_TRUSTED_ORIGINS = ['https://1b24-197-184-176-103.eu.ngrok.io']
+CSRF_TRUSTED_ORIGINS = ['shoolfees.herokuapp.com']
 # Application definition
 
 # Application definition
