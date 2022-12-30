@@ -27,7 +27,7 @@ SECRET_KEY = 'eo1wxzytp#$0=6xed9z7_du=t1(a%dop0k5obwvq_sqq@k0000888887333334$$##
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["shoolfees.herokuapp.com"]
+ALLOWED_HOSTS = ["*"]
 
 CSRF_TRUSTED_ORIGINS = ['shoolfees.herokuapp.com']
 # Application definition
