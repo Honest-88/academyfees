@@ -1,3 +1,4 @@
+gunicorn==20.1.0
 asgiref==3.5.1
 boto3==1.17.58
 botocore==1.20.58
@@ -40,7 +41,6 @@ django-widget-tweaks==1.4.8
 djangorestframework==3.12.4
 et-xmlfile==1.1.0
 filelock==3.7.1
-gunicorn==20.1.0
 html5lib==1.1
 idna==2.10
 jmespath==0.10.0
